@@ -2,6 +2,6 @@
 
 Voici quelques write-ups pour le FINCTF-2024
 
-- [Bad Azure](fr/Bad%20Azure/README.md)
-- [Dig the PCAP](fr/Dig%20the%20PCAP/README.md)
-- [Angry Cipher](fr/Angry%20Cypher/README.md)
+- [Bad Azure](challenges/Bad%20Azure/fr.md)
+- [Dig the PCAP](challenges/Dig%20the%20PCAP/fr.md)
+- [Angry Cipher](challenges/Angry%20Cypher/fr.md)
