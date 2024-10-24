@@ -18,21 +18,21 @@ On nous fourni un fichier *cypher.txt* contenant ce texte:
 
 On a aussi le fichier *obfuscated.bin* qui est en effet un fichier binaire. Dans l'introduction du challenge, on nous mentionne qu'il s'agit de la fonction de décryption d'une application.
 
-Sachant que le .bin peut être interprété comme executable, on peut utiliser Ghidra pour désassmbler la méthode.
+Sachant que le .bin peut être interprété comme executable, on peut utiliser Ghidra pour désassembler la méthode.
 
 ![Angry - Setup Ghidra](../../img/angry-01.png)
 
-Ghidra va avoir besoin d'un coup de main pour interpréter les instruction selon le bon format. La description fait mention d'appareils. Appareils mobiles? Si c'est le cas la cible serait un processeur ARM. On va tenter en utilisant un v8 générique.
+Ghidra va avoir besoin d'un coup de main pour interpréter les instructions selon le bon format. La description fait mention d'appareils. Appareils mobiles? Si c'est le cas la cible serait un processeur ARM. On va tenter en utilisant un v8 générique.
 
 ![Angry - Setup Language](../../img/angry-02.png)
 
-Ghidra va tenter d'analyser le binaire comme un executable complet. Ça peut causer problème car nous n'avons pas un exécutable complet. Certaines addresses map vers des fonctions standardes que Ghydra tente d'interter comme méthodes.
+Ghidra va tenter d'analyser le binaire comme un executable complet. Ça peut causer problème car nous n'avons pas un exécutable complet... Certaines addresses map vers des fonctions standardes que Ghidra tente d'interpréter comme méthodes.
 
 Pour le moment, on va laisser Ghidra faire sa magie.
 
 ![Angry - Magic](../../img/angry-03.png)
 
-On vois qu'en effet, toutes sortes de fonction sont détectées. Elles sont toutes similaire à quelque détail près. C'est que les fonction standardes se font mapper a l'intérieur du corp de notre fonction a différents offsets!
+On vois qu'en effet, toutes sortes de fonction sont détectées. Elles sont toutes similaire à quelque détails près. C'est que les fonctions standardes se font mapper a l'intérieur du corp de notre fonction a différents offsets!
 
 Puisqu'on a probablement qu'une seule fonction dans notre binaire. On peut prendre pour aquis que le représentation la plus juste serait à l'offset 0x0.
 
@@ -67,7 +67,7 @@ Le nom `Reset` peut être ignoré et les arguments ne sont peut-être pas tous v
 
 En surface, la méthode semble compliquée, mais en analysant de plus près c'est plutôt simple.
 
-- On semble recevoir possiblement une chaine (ou byte array) à encripter dans le paramètre #1
+- On semble recevoir possiblement une chaine (ou byte array) à encrypter dans le paramètre #1
 - On reçois un entier 32bit en paramètre #2
 - L'entier est séparé en quatre segments et assigné dans un byte array[4]
 - On initialise un compteur à zéro
@@ -75,7 +75,7 @@ En surface, la méthode semble compliquée, mais en analysant de plus près c'es
 - On fait toute sortes de manipulations louches avec nos compteurs
 - On XOR un byte du premier array avec un byte du deuxième
 - On incrémente notre compteur
-- Finalement on appèle une fonction mystère et on retourne le toute
+- Finalement on appèle une fonction mystère et on retourne le tout
 
 On peut déduire les points suivant:
 
@@ -89,7 +89,7 @@ On peut déduire les points suivant:
 
     Est équivalent à:
     `if (uStack_c == 0) {uVar1 = -0}`
-    Car uStack ne sera jamais négatif, alors c'est complètement redondant et peut être retiré
+    Vu que uStack ne sera jamais négatif, c'est complètement redondant et peut être retiré
 
 Est-ce qu'on est simplement en train de faire un XOR en faisant une rotation des bytes de la clé ?!
 On peut facilement répliquer ça dans un script python. Voici la même méthode simplifiée:
@@ -123,7 +123,7 @@ def encrypt_decrypt(data: str, key: int) -> str:
 
 En théorie, on a maintenant la méthode d'encryption. Maintenant, reste à découvrir la clé secrète.
 
-XOR est une opération réversible, pour décrypter des données XORed, on doit simplement le XOR de nouveau avec la même clé. Dans ce cas ci, la clé est courte et réutilisée. Ce type d'encryption est facile à cracker, car suivant cette logique si on connais une partie du message, on peut le XOR avec le message encrypter pour obtenir la clé.
+XOR est une opération réversible, pour décrypter des données XORed, on doit simplement le XOR de nouveau avec la même clé. Dans ce cas ci, la clé est courte et réutilisée. Ce type d'encryption est facile à cracker, car suivant cette logique si on connais une partie du message, on peut le XOR avec le message encrypté pour obtenir la clé.
 
 La description du challenge mentionne clairement que le message à le format `FINCTF{...}` alors on a emplement de données connues pour révèler la clé. (Deux fois !)
 
@@ -171,7 +171,7 @@ Wait what...
 
 Tout est bon pourtant... il doit nous manquer quelque chose...
 
-C'est vrai qu'il y avait une autre fonction mystère dans le code original... et le message crypté à un air familier... 🤔
+C'est vrai qu'il y avait une autre fonction mystère dans le code original... et le look du message crypté à un air familier... 🤔
 
 Base64?
 
