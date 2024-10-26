@@ -181,7 +181,7 @@ int FUN_080493e7(int param_1,int param_2,int param_3)
 
 ```
 
-Ok... ici on fait des opérations XOR avec nos paramètres et des constantes magiques. Le if semble a première vue valider que les bytes sont de la portée des caractères alphabétiques minuscule ([Entre 97 et 122 de la table ASCII inclusivement](https://www.asciitable.com/)).
+Ok... ici on fait différentes opérations avec nos paramètres et des constantes magiques. Le if semble a première vue valider que les bytes sont de la portée des caractères alphabétiques minuscule ([Entre 97 et 122 de la table ASCII inclusivement](https://www.asciitable.com/)).
 
 On a donc, la logique d'encryption, il nous manque seulement les valeurs *"clés"* liées aux pointeurs vu précédemment.
 
@@ -236,7 +236,7 @@ Dans ce cas-ci, implémenter l'opération inverse est plutôt complexe. Par cont
 - On a la chaîne cible
 - On sais que le mot de passe contient que des caractères [a-z]
 - La longueur est la même que la cible soit 21
-- La logique d'encryption est une boucle avec un XOR fancy
+- La logique d'encryption est une boucle avec un des opérations basiques fancy
 - On a une copie statique des clés.
 
 Déterminer le mot de passe par une attaque "brute-force" est totalement envisageable. On a qu'a implémenter la logique tel quel et encrypter byte par byte en comparant avec le résultat cible.
