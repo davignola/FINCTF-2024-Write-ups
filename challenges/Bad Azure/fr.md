@@ -4,6 +4,8 @@ Ceci est une track de quatre challenges portant sur des misconfigurations cloud 
 
 ## Partie 1
 
+>Track construite par l'équipe de sécurité infonuagique. Celle-ci démontre plusieurs mauvaises configurations qui peuvent se présenter dans un environnement Azure Cloud. Naviguez sur l'application pour en savoir plus !
+
 Nous sommes devant cette page web:
 
 ![Bad Azure : Intro](../../img/az-01.png)

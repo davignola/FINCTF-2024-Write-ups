@@ -4,6 +4,8 @@ Ceci est une track de trois challenges visant, *en surface,* à explorer un [fic
 
 ## Partie 1
 
+>Vous êtes un membre de l'équipe de cyberdéfense d'une compagnie de consultation avec plusieurs clients. Un de vos collègues a mis la main sur l'enregistrement d'un flux réseau intéressant. Ce dernier a été capté lors de la compromission initiale d'un endpoint chez l'un de vos clients. Votre objectif est d'analyser ce flux et de comprendre ce qui s'est produit.
+
 Quand on ouvre le fichier pour la première fois, on y vois principalement des échanges TLS (voir ici probablement des requêtes HTTPS), alors le contenu est encrypté.
 
 ![PCAP - First look](../../img/pcap-01.png)
@@ -32,6 +34,8 @@ Tous les échanges FTP sont en texte clair par design, on peut voir étape par �
 On obtient le premier flag via le nom du fichier
 
 ## Partie 2
+
+>
 
 En poussant l'investigation, puisque les transactions FTP ne sont pas encryptées, on peut extraire le contenu du fichier qui à été transféré.
 
