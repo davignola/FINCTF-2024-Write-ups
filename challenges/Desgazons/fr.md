@@ -55,10 +55,12 @@ Le contenu est peu mémorable. Par contre on voit qu'il y a deux branches. Si on
 Un fichier additionnel intéressant est présent. Il contient notre deuxième flag et des informations qui en dit long sur le personnage auquel on a affaire. Je crois qu'on va recroiser chemin avec Timmy sous peu...
 
 `nano.save`
->username: timmy
+```
+username: timmy
 password: timmy2024
 the_best: yes
 flag: FINCTF{PUBL1C_R3P0_F0R_PUBL1C_4CC3SS}
+```
 
 ## Partie 3
 
@@ -141,8 +143,10 @@ On obtient les détails d'un compte de service et notre troisième flag.
 
 On a maintenant on nouveau compte pour accéder au serveur Gitea.
 
->username: svc_web
+```
+username: svc_web
 password: +NKaKi3nc*g&GX_7yy=};I4W,
+```
 
 En utilisant ce nouveau compte on a maintenant accès a un nouveau repos `admin`.
 
@@ -269,10 +273,12 @@ On peut se servir de BurpSuite pour générer une requète et la répéter au be
 
 Un fichier de log devrait normalement avoir le format suivant:
 
->-- failed authentication attempt --
+```
+-- failed authentication attempt --
 username = timmy
 password = isuckass
 [...]
+```
 
 ### Le payload
 
